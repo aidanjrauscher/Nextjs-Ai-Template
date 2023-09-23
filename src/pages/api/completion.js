@@ -13,19 +13,19 @@ export default async function handler(req, res) {
     return new Response("Request must be POST.", { status: 405 })
   }
 
-  const { messages } = await req.json();
+  const { prompt } = await req.json();
 
-  if (!messages) {
-    return new Response("No messages provided for chat.", { status: 400 })
+  if (!prompt) {
+    return new Response("No prompt provided for generation.", { status: 400 })
   }
 
   const parameters = {
     temperature: 0.5
   }
-  const response = await openai.chat.completions.create({
-    model: 'gpt-3.5-turbo',
+  const response = await openai.completions.create({
+    model: 'text-davinci-003',
     stream: true,
-    messages: messages,
+    prompt: prompt,
     ...parameters
   })
   const stream = OpenAIStream(response)

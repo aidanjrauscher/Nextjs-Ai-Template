@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
 
+
 export const runtime = 'experimental-edge';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+
   return (
     <>
       <Head>
